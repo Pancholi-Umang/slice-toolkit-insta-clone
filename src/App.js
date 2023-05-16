@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./component/Home";
+import Login from "./component/Login";
+import Navbar from "./component/Navbar";
+import Registration from "./component/Registration";
+import Protected from "./component/Protected";
+import Profile from "./component/Profile";
+import { useEffect } from "react";
+import { setSingleUser } from "./redux/LoginSlice";
+import { useDispatch } from "react-redux";
+import { fetchComment, fetchLike, fetchPost } from "./redux/PostsSlice";
+import EditPost from "./component/EditPost";
+import EditComment from "./component/EditComment";
+
+const LocalStorageItem = () => {
+  let userDetails = localStorage.getItem("Logins");
+
+  if (userDetails) {
+    return JSON.parse(localStorage.getItem("Logins"));
+  } else {
+    return [];
+  }
+};
+
 
 function App() {
+  const dispatch = useDispatch();
+  const data = LocalStorageItem();
+
+  useEffect(()=>{
+    if(data[0]){
+      dispatch(setSingleUser(data[0]))
+    }else {
+      dispatch(setSingleUser({}))
+    }
+  },[data])
+
+  useEffect(()=>{
+    dispatch(fetchPost());
+    dispatch(fetchComment());
+    dispatch(fetchLike());
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  <BrowserRouter>
+    <Navbar />
+     <Routes>
+      <Route path="/" element={<Protected Component={Home} />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route path="/edit-post/:ids" element={<EditPost />} />
+      <Route path="/edit-comment/:ids" element={<EditComment />} />
+     </Routes>
+  </BrowserRouter>
+)}
 
 export default App;
