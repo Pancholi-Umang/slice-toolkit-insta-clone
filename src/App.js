@@ -31,10 +31,10 @@ function App() {
   const data = LocalStorageItem();
 
   useEffect(()=>{
-    if(data[0]){
-      dispatch(setSingleUser(data[0]))
+    if(data){
+      dispatch(setSingleUser(data))
     }else {
-      dispatch(setSingleUser({}))
+      dispatch(setSingleUser([]))
     }
   },[data])
 

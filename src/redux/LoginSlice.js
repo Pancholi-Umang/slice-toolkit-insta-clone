@@ -9,7 +9,7 @@ const STATUSES = Object.freeze({
 
 const initialState = {
   users: [],
-  user: {},
+  user: [],
   status: STATUSES.IDLE,
 };
 
@@ -54,7 +54,8 @@ export const getUsers = (data) => {
           `http://localhost:3000/registration/?email=${data?.email}&password=${data.password}`
         )
         .then((res) => {
-          localStorage.setItem("Logins", JSON.stringify(res.data));
+          localStorage.setItem("Logins", JSON.stringify(res.data[0]));
+          console.log(res.data)
           dispatch(setStatus(STATUSES.IDLE));
           dispatch(setSingleUser(res.data[0]));
         });
@@ -64,17 +65,19 @@ export const getUsers = (data) => {
       }
     };
   };
-
-
+  
+  
   export const patchData = (data) => {
     return async (dispatch) => {
       dispatch(setStatus(STATUSES.LOADING));
       try {
         axios
-        .patch(`http://localhost:3000/registration/${data?.id}`,data)
+        .patch(`http://localhost:3000/registration/${data?.id}`,data) 
         .then((res) => {
+          console.log(res.data)
           localStorage.setItem("Logins", JSON.stringify(res.data));
           dispatch(setStatus(STATUSES.IDLE));
+          dispatch(setSingleUser(res.data));
         });
     } catch (error) {
       console.log(error);
