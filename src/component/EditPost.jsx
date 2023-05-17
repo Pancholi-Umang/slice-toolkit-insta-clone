@@ -12,7 +12,7 @@ const EditPost = () => {
     const [emptyImage, setEmptyImage] = useState([]);
     const navigate = useNavigate();
     const loginUser = useSelector((state) => state?.registration?.user)
-    console.log(loginUser)
+   
 
     const handleImage = (event) => {
         const files = event?.target?.files;

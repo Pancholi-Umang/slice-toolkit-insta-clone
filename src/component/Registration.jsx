@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useFormik } from "formik";
 import { signupSchema } from "../schemas";
 import { Link, useNavigate } from "react-router-dom";
-import { getUsers, postUsers } from '../redux/LoginSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { postUsers } from '../redux/LoginSlice';
+import { useDispatch } from 'react-redux';
 
 const initialValues = {
   name: "",

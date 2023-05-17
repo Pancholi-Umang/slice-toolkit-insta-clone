@@ -58,6 +58,24 @@ export const getUsers = (data) => {
           dispatch(setStatus(STATUSES.IDLE));
           dispatch(setSingleUser(res.data[0]));
         });
+      } catch (error) {
+        console.log(error);
+        dispatch(setStatus(STATUSES.ERROR));
+      }
+    };
+  };
+
+
+  export const patchData = (data) => {
+    return async (dispatch) => {
+      dispatch(setStatus(STATUSES.LOADING));
+      try {
+        axios
+        .patch(`http://localhost:3000/registration/${data?.id}`,data)
+        .then((res) => {
+          localStorage.setItem("Logins", JSON.stringify(res.data));
+          dispatch(setStatus(STATUSES.IDLE));
+        });
     } catch (error) {
       console.log(error);
       dispatch(setStatus(STATUSES.ERROR));

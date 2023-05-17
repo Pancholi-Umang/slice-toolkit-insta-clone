@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { fetchComment, fetchLike, fetchPost } from "./redux/PostsSlice";
 import EditPost from "./component/EditPost";
 import EditComment from "./component/EditComment";
+import EditProfile from "./component/EditProfile";
+// json-server --watch db.json
 
 const LocalStorageItem = () => {
   let userDetails = localStorage.getItem("Logins");
@@ -52,6 +54,7 @@ function App() {
       <Route path="/registration" element={<Registration />} />
       <Route path="/edit-post/:ids" element={<EditPost />} />
       <Route path="/edit-comment/:ids" element={<EditComment />} />
+      <Route path="/edit-profile/:ids" element={<EditProfile />} />
      </Routes>
   </BrowserRouter>
 )}

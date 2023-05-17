@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setSingleUser } from "../redux/LoginSlice";
 
 
@@ -21,28 +21,27 @@ const Navbar = () => {
           </a>
           <ul className="navbar-nav d-flex flex-row me-1">
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle text-white"
-                href="#"
                 id="navbarDropdown"
                 role="button"
                 data-mdb-toggle="dropdown"
                 aria-expanded="false"
               >
                 <i className="fas fa-user mx-1" /> Profile
-              </a>
+              </Link>
               <ul
                 className="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdown"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="/profile">
                     My account
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <button onClick={removeUser}
-                  className="dropdown-item" href="#">
+                  className="dropdown-item">
                     Log out
                   </button>
                 </li>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
-import { PostdeleteSuccess, commentArray, deletCommentUser, deletLikeUser, likeArray, } from "../redux/PostsSlice";
+import { PostdeleteSuccess, commentArray, deletCommentUser, deletLikeUser, likeArray } from "../redux/PostsSlice";
 import './style.css';
 
 
@@ -36,8 +36,6 @@ const Post = ({ post_value }) => {
         return filterComment?.Post_id === post_value?.id;
     });
 
-    console.log(commentFilter,"",post_value?.User_text)
-
     const toggleLikeButton = likeList?.filter((value) => {
         return loginUser?.id === value?.user_id && post_value?.id === value?.Post_id;
     });
@@ -52,10 +50,10 @@ const Post = ({ post_value }) => {
     const PostComment = (post_id) => {
         if (userComment?.length !== 0) {
             dispatch(commentArray({
-                    user_id: loginUser?.id, 
-                    User_name: loginUser?.name, User_profile: loginUser?.profile, 
-                    Post_id: post_id, comment: userComment,
-                }));
+                user_id: loginUser?.id,
+                User_name: loginUser?.name, User_profile: loginUser?.profile,
+                Post_id: post_id, comment: userComment,
+            }));
             setUserComment("");
         } else {
             alert("please Enter Comment Content");
@@ -89,25 +87,37 @@ const Post = ({ post_value }) => {
                         {post_value?.Post_image?.map((i, index) => {
                             return (
                                 <Carousel.Item key={index} interval={500}>
-                                    <img
-                                        className="post-image d-block w-100"
-                                        onDoubleClick={() => LikePost(post_value?.id)}
-                                        src={i}
-                                        alt="First slide"
-                                        style={{ cursor: "pointer", height: "700px" }}
-                                    />
+                                    {
+                                        toggleLikeButton.length == 0 ? <img
+                                            className="post-image d-block w-100"
+                                            onDoubleClick={() => LikePost(post_value?.id)}
+                                            src={i}
+                                            alt="First slide"
+                                            style={{ cursor: "pointer", height: "700px" }}
+                                        /> : <img
+                                            className="post-image d-block w-100"
+                                            onDoubleClick={() => deletePosts(toggleLikeButton[0]?.id)}
+                                            src={i}
+                                            alt="First slide"
+                                            style={{ cursor: "pointer", height: "700px" }}
+                                        />
+                                    }
+
                                 </Carousel.Item>
                             );
                         })}
                     </Carousel>
                 </div>
-                <p className="px-3"><strong>{LikeCounting.length} Likes</strong></p>
+                {
+                    LikeCounting.length >= 2 ? <p className="px-3"><strong>Liked by {LikeCounting[LikeCounting?.length - 1]?.User_namey} and {LikeCounting.length - 1} Others</strong></p> : <p className="px-3"><strong>{LikeCounting.length} Like </strong></p>
+                }
+
                 <div className="container">
                     {/* comments */}
                     {
                         commentFilter?.length == 0 ? <p>No Comments...</p> : <p><strong>Comments:-</strong> </p>
                     }
-                    
+
                     <div
                         className="container overflow-scroll"
                         style={{ minHeight: "40px", maxHeight: "100px" }}
