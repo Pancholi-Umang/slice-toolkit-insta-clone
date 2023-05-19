@@ -12,6 +12,7 @@ const initialState = {
   like: [],
   comment: [],
   post: {},
+  messge:[],
   status: STATUSES.IDLE,
 };
 
@@ -31,11 +32,19 @@ const PostsSlice = createSlice({
     setStatus(state, action) {
       state.status = action.payload;
     },
+    getMessge(state, action) {
+      state.messge = action.payload;
+    },
   },
 });
 
-export const { getPosts, setStatus, getComment, getLike } = PostsSlice.actions;
+
+
+export const { getPosts, setStatus, getComment, getLike, getMessge } = PostsSlice.actions;
 export default PostsSlice.reducer;
+
+
+
 
 export const postCreated = (data) => {
   return async (dispatch) => {
@@ -212,3 +221,35 @@ export const deletLikeUser = (id) => {
     }
   };
 };
+
+
+// chat room 
+
+export const getUsersMessages = () => {
+  return async (dispatch) => {
+    dispatch(setStatus(STATUSES.LOADING));
+    try {
+      await axios.get(`http://localhost:3000/chatroom`).then((res) => {
+        dispatch(setStatus(STATUSES.IDLE));
+        dispatch(getMessge(res.data));
+      });
+    } catch (error) {
+      dispatch(setStatus(STATUSES.ERROR));
+    }
+  }
+}
+
+export const sendMesaagesUser = (data) => {
+  return async (dispatch) => {
+    dispatch(setStatus(STATUSES.LOADING));
+    try {
+      await axios.post(`http://localhost:3000/chatroom`,data).then((res) => {
+        console.log(res?.data)
+        dispatch(setStatus(STATUSES.IDLE));
+        dispatch(getUsersMessages());
+      });
+    } catch (error) {
+      dispatch(setStatus(STATUSES.ERROR));
+    }
+  }
+}

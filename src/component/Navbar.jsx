@@ -20,6 +20,9 @@ const Navbar = () => {
             Facebook-Clone
           </a>
           <ul className="navbar-nav d-flex flex-row me-1">
+            <li className="nav-item">
+              <Link to="/allchat" className="nav-link text-white">Messages</Link>
+            </li>
             <li className="nav-item dropdown">
               <Link
                 className="nav-link dropdown-toggle text-white"
@@ -41,7 +44,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button onClick={removeUser}
-                  className="dropdown-item">
+                    className="dropdown-item">
                     Log out
                   </button>
                 </li>

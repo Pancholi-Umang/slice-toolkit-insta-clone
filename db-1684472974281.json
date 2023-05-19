@@ -56,6 +56,12 @@
   ],
   "like": [
     {
+      "user_id": 2,
+      "User_name": "dhaval",
+      "Post_id": 1,
+      "id": 1
+    },
+    {
       "user_id": 1,
       "User_name": "umang",
       "Post_id": 2,
@@ -66,143 +72,8 @@
       "User_name": "umang",
       "Post_id": 1,
       "id": 3
-    },
-    {
-      "user_id": 2,
-      "User_name": "dhaval",
-      "Post_id": 1,
-      "id": 4
     }
   ],
-  "chatroom": [
-    {
-      "user_id": "3",
-      "user_name": "kenil",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "hello",
-      "id": 1
-    },
-    {
-      "user_id": "3",
-      "user_name": "kenil",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "hiiii",
-      "id": 2
-    },
-    {
-      "user_id": "2",
-      "user_name": "dhaval",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "hi dhaval",
-      "id": 3
-    },
-    {
-      "user_id": "2",
-      "user_name": "dhaval",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "wdwd",
-      "id": 4
-    },
-    {
-      "user_id": "1",
-      "user_name": "umang pancholi",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "xx",
-      "id": 5
-    },
-    {
-      "user_id": "3",
-      "user_name": "kenil",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "ww",
-      "id": 6
-    },
-    {
-      "user_id": "2",
-      "user_name": "dhaval",
-      "sender_id": 2,
-      "sender_name": "dhaval",
-      "sender_message": "wdwd",
-      "id": 7
-    },
-    {
-      "user_id": "1",
-      "user_name": "umang pancholi",
-      "sender_id": 2,
-      "sender_name": "dhaval",
-      "sender_message": "fhfh",
-      "id": 8
-    },
-    {
-      "user_id": "1",
-      "user_name": "umang pancholi",
-      "sender_id": 2,
-      "sender_name": "dhaval",
-      "sender_message": "sdwd",
-      "id": 9
-    },
-    {
-      "user_id": "3",
-      "user_name": "kenil",
-      "sender_id": 2,
-      "sender_name": "dhaval",
-      "sender_message": "dwdw",
-      "id": 10
-    },
-    {
-      "user_id": "1",
-      "user_name": "umang pancholi",
-      "sender_id": 2,
-      "sender_name": "dhaval",
-      "sender_message": "dwdw",
-      "id": 11
-    },
-    {
-      "user_id": "2",
-      "user_name": "dhaval",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "cscw",
-      "id": 12
-    },
-    {
-      "user_id": "1",
-      "user_name": "umang pancholi",
-      "sender_id": 3,
-      "sender_name": "kenil",
-      "sender_message": "hello",
-      "id": 13
-    },
-    {
-      "user_id": "1",
-      "user_name": "umang pancholi",
-      "sender_id": 3,
-      "sender_name": "kenil",
-      "sender_message": "dwdw",
-      "id": 14
-    },
-    {
-      "user_id": "3",
-      "user_name": "kenil",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "qsqsqsq",
-      "id": 15
-    },
-    {
-      "user_id": "3",
-      "user_name": "kenil",
-      "sender_id": 1,
-      "sender_name": "umang pancholi",
-      "sender_message": "dsdsd",
-      "id": 16
-    }
-  ],
+  "chatroom": [],
   "profile": {}
 }

@@ -24,10 +24,13 @@ const LoginSlice = createSlice({
     setSingleUser(state, action) {
       state.user = action.payload;
     },
+    allusers(state, action) {
+      state.users = action.payload;
+    },
   },
 });
 
-export const { setStatus, setSingleUser } = LoginSlice.actions;
+export const { setStatus, setSingleUser, allusers } = LoginSlice.actions;
 export default LoginSlice.reducer;
 
 export const postUsers = (data) => {
@@ -55,30 +58,44 @@ export const getUsers = (data) => {
         )
         .then((res) => {
           localStorage.setItem("Logins", JSON.stringify(res.data[0]));
-          console.log(res.data)
+          console.log(res.data);
           dispatch(setStatus(STATUSES.IDLE));
           dispatch(setSingleUser(res.data[0]));
         });
-      } catch (error) {
-        console.log(error);
-        dispatch(setStatus(STATUSES.ERROR));
-      }
-    };
+    } catch (error) {
+      console.log(error);
+      dispatch(setStatus(STATUSES.ERROR));
+    }
   };
-  
-  
-  export const patchData = (data) => {
-    return async (dispatch) => {
-      dispatch(setStatus(STATUSES.LOADING));
-      try {
-        axios
-        .patch(`http://localhost:3000/registration/${data?.id}`,data) 
+};
+
+export const patchData = (data) => {
+  return async (dispatch) => {
+    dispatch(setStatus(STATUSES.LOADING));
+    try {
+      axios
+        .patch(`http://localhost:3000/registration/${data?.id}`, data)
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
           localStorage.setItem("Logins", JSON.stringify(res.data));
           dispatch(setStatus(STATUSES.IDLE));
           dispatch(setSingleUser(res.data));
         });
+    } catch (error) {
+      console.log(error);
+      dispatch(setStatus(STATUSES.ERROR));
+    }
+  };
+};
+
+export const allUserFind = () => {
+  return async (dispatch) => {
+    dispatch(setStatus(STATUSES.LOADING));
+    try {
+      axios.get(`http://localhost:3000/registration`).then((res) => {
+        dispatch(setStatus(STATUSES.IDLE));
+        dispatch(allusers(res.data));
+      });
     } catch (error) {
       console.log(error);
       dispatch(setStatus(STATUSES.ERROR));
